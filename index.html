@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصة حبنا 💖</title>
+    <style>
+        body { background: #1a0000; color: white; text-align: center; font-family: Arial, sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow-x: hidden; }
+        .screen { display: none; flex-direction: column; align-items: center; width: 90%; max-width: 600px; padding: 20px; }
+        .active { display: flex; animation: fadeIn 2s; }
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+        input { padding: 15px; border-radius: 25px; border: 1px solid #ff4d6d; margin: 15px; text-align: center; width: 80%; font-size: 1.1rem; background: #fff; color: #000; }
+        button { background: #ff4d6d; color: white; border: none; padding: 12px 40px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4); }
+        .typing { font-size: 1.3rem; margin-top: 20px; color: #ffb3c1; line-height: 1.8; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); white-space: pre-wrap; }
+        .heart-icon { font-size: 3rem; margin-bottom: 10px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.1);} 100% {transform: scale(1);} }
+    </style>
+</head>
+<body>
+
+    <div id="lock" class="screen active">
+        <div class="heart-icon">🔒</div>
+        <h2>مكاننا الخاص</h2>
+        <p>ادخلي تاريخنا السرّي لفتح القلب</p>
+        <input type="text" id="pass" placeholder="اليوم/الشهر/السنة">
+        <button onclick="unlock()">فتح 💖</button>
+    </div>
+
+    <div id="content" class="screen">
+        <div class="heart-icon">💖</div>
+        <h1 style="color: #ff4d6d;">قصة حبنا</h1>
+        <div id="typing-text" class="typing"></div>
+        <p style="margin-top:30px; font-size: 1.5rem; font-weight: bold; color: #ff4d6d;">بحبك يا أغلى ما عندي ❤️🏡</p>
+    </div>
+
+    <audio id="mySong" src="m4a.(M4A_128K)202077555.m4a"></audio>
+
+    <script>
+        function unlock() {
+            let p = document.getElementById("pass").value;
+            if(p === "21/12/2021") {
+                document.getElementById("lock").classList.remove("active");
+                document.getElementById("content").classList.add("active");
+                document.getElementById("mySong").play();
+                startTyping();
+            } else {
+                alert("الباسورد غلط يا روحي! التاريخ هو: 21/12/2021");
+            }
+        }
+
+        let message = "كل لحظة معاك هي أجمل ذكرى في حياتي ومش بس لحظة وخلاص ده إحساس بيكبر كل يوم من أول ضحكة لأول كلام لأول خوف عدّى وأنا مطمّنّة عشان إنت جنبي علاقتنا ما كانتش صدفة دي حكاية اتكتبت واحدة واحدة بصبرنا وبخوفنا على بعض وبفرحنا اللي كان بسيط بس صادق وبوجعنا اللي عدّى لأننا مسكنا في بعض وما سبناش إيدينا إنت الأمان اللي قلبي بيرتاح فيه والشخص الوحيد اللي لما أتكلم معاه أحس إني في بيتي معاك بتعلّمي إن الحب مش كلام وبس الحب عشرة ودعوة من القلب ووجودك ما يتعوضش عدّى علينا كتير بس كل مرة كنت أختارك من أول وجديد لأني معاك بحس إني أنا من غير تمثيل من غير خوف على طبيعتي وبقلب مطمّن أجمل حاجة في علاقتنا إنها كبرت معانا كبرت مع نُضجنا مع أحلامنا مع تعبنا اللي كان دايمًا له معنى طول ما إحنا سوا وممكن ما أعرفش المستقبل هيودينا فين بس متأكدة من حاجة واحدة إن وجودك في حياتي نعمة وإن كل لحظة معاك هي ذكرى بحبها قبل ما تتحكي وعيد الحب ده بالنسبة لي كان عيد لينا بس إحنا الاثنين كل يوم بحس بحبك أكتر وكل يوم بحس إن قلبي ملكك وحدك ♥🏡";
+        
+        let i = 0;
+        function startTyping() {
+            if (i < message.length) {
+                document.getElementById("typing-text").innerHTML += message.charAt(i);
+                i++;
+                setTimeout(startTyping, 80); 
+            }
+        }
+    </script>
+</body>
+</html>
